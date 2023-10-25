@@ -15,7 +15,7 @@ def send_message(chat_id):
     parse_mode = json_object.get('parse_mode', 'HTML')
 
     result = controller.send_message(chat_id, text, parse_mode)
-    return jsonify(result), 200
+    return jsonify({"message_id": result.message_id}), 200
 
 
 @blueprint.route('/edit_message_text/<message_id>', methods=['POST'])
@@ -28,13 +28,13 @@ def edit_message_text(chat_id, message_id):
 
     result = controller.edit_message_text(
         chat_id, text, message_id, parse_mode)
-    return jsonify(result), 200
+    return jsonify({"message_id": result.message_id}), 200
 
 
 @blueprint.route('/delete_message/<message_id>', methods=['DELETE'])
 def delete_message(chat_id, message_id):
     result = controller.delete_message(chat_id, message_id)
-    return jsonify(result), 200
+    return jsonify("successful"), 200
 
 
 @blueprint.route('/pin_chat_message/<message_id>', methods=['POST'])
@@ -46,4 +46,4 @@ def pin_chat_message(chat_id, message_id):
 
     result = controller.pin_chat_message(
         chat_id, message_id, disable_notification)
-    return jsonify(result), 200
+    return jsonify("successful"), 200
