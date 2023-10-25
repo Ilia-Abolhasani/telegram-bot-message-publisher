@@ -11,6 +11,8 @@ def send_message(chat_id):
     data = request.data
     decoded_data = data.decode('utf-8')
     json_object = json.loads(decoded_data)
+    json_object = json.loads(json_object)
+    json_object = json.loads(json_object)
     text = json_object['text']
     parse_mode = json_object.get('parse_mode', 'HTML')
 
