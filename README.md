@@ -1,6 +1,6 @@
 # Telegram Bot Message Publisher
 
-This repository hosts a simple web service designed for sending messages via a Telegram bot when direct access to Telegram API and servers is restricted or banned. Messages are received through a POST request to the endpoint `/ {chat_id} /bot/send_message` and are then forwarded to a specified chat ID using the configured Telegram bot.
+This repository hosts a simple web service designed for sending messages via a Telegram bot when direct access to Telegram API and servers is restricted or banned. Messages are received through a POST request to the endpoint `/{chat_id}/bot/send_message` and are then forwarded to a specified chat ID using the configured Telegram bot.
 
 ## Setup
 
