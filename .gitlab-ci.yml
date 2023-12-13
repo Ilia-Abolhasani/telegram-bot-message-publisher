@@ -3,13 +3,14 @@ stages:
 
 variables:
   PORT: 4001
-  BASE_PATH: "/home/telegram/telegram-mtproto-server"
+  BASE_PATH: "/home/telegram/bot-message-publisher"
+  SERVICE_NAME: "telegram_message_publisher.service"
 
 deploy_prod:
   stage: prod
   tags: ["telegram"]  
-  script:
-    - sudo systemctl stop mtproxyserver.service
+  script:      
+    - sudo systemctl stop $SERVICE_NAME
     - sudo rm -rf $BASE_PATH/*
     - mkdir -p $BASE_PATH
     - sudo bash -c "date > $BASE_PATH/date.txt"
@@ -19,6 +20,6 @@ deploy_prod:
     - sudo apt-get install -y python3-venv 
     - sudo python3 -m venv $BASE_PATH/venv
     - sudo $BASE_PATH/venv/bin/pip install -r $BASE_PATH/requirements.txt    
-    - sudo systemctl restart mtproxyserver.service
+    - sudo systemctl restart $SERVICE_NAME
   only:
     - main
